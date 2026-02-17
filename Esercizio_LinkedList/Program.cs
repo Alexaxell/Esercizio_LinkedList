@@ -16,12 +16,21 @@
             }
 
             current = head;
+            int indice = 0;
 
             while (current != null)
             {
-                Console.WriteLine(current.Value);
+                if (current.Next == null)
+                {
+                    Console.WriteLine($"{current.Value}[{indice}]");
+                    break;
+                }
+                Console.Write($"{current.Value}[{indice}] -> ");
                 current = current.Next;
+                indice++;
             }
+
+            Console.WriteLine();
 
             Console.WriteLine("Inserisci la posizione di dove vuoi inserire l'elemento: ");
             int posizione = int.Parse(Console.ReadLine());
@@ -47,10 +56,9 @@
                     index++;
                 }
 
-                if (current == null)
-                {
-                    Console.WriteLine("Posizione non valida.");
-                }
+                if (current == null)    
+                    throw new ArgumentException("Posizione non valida.");
+
                 else
                 {
                     nuovoNodo.Next = current.Next;
@@ -61,8 +69,27 @@
                 current = head;
                 while (current != null)
                 {
-                    Console.WriteLine(current.Value);
+                    if (current.Next == null)
+                    {
+                        Console.WriteLine($"{current.Value}[{indice}]");
+                        break;
+                    }
+                    Console.Write($"{current.Value}[{indice}] -> ");
                     current = current.Next;
+                    indice++;
+                }
+
+                Console.WriteLine();
+
+                current = head;
+                while (current != null)
+                {
+                    if (current.Value % 2 == 0)
+                        Console.WriteLine($"- {current.Value}[{indice}] -> PARI");
+                    else
+                        Console.WriteLine($"- {current.Value}[{indice}] -> DISPARI");
+                    current = current.Next;
+                    indice++;
                 }
             }
         }
